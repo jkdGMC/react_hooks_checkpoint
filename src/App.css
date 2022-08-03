@@ -9,10 +9,11 @@
   color: red;
 }
 
-/* .movies{
+.movies{
+  width: 50%;
   border: 1px solid white;
   border-radius: 3px;
-} */
+} 
 
 .btns{
   margin-top: 70px;

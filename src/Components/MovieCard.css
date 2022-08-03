@@ -1,6 +1,8 @@
 .movieCard_component{
   width: 170px;
+  height: auto;
   margin-right: 30px;
+  margin-bottom: 30px;
   font-size: 30px;
   border-radius: 3px;
   border: 1px solid red;
@@ -11,10 +13,13 @@
 }
 
 .btn-more {
-  right: 0;
+  display: flex;
+  width: 40%;
+  float: right;
 }
 
 .btn-more button{
+  cursor: pointer;
   width: 60px;
   height: 30px;
   margin-right: 5px;

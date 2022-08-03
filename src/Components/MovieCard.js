@@ -2,6 +2,7 @@ import React from 'react'
 import './MovieCard.css'
 
 export default function MovieCard(props) {
+  
   return (
     <div className='movieCard_component'>
       <img src={props.posterUrl} alt="imgPoster" />

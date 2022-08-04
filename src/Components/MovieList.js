@@ -1,15 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import MovieCard from './MovieCard'
 import './MovieList.css'
 
-export default function MovieList() {
+
+export default function MovieList({tabMovies}) {
 
   return (
-    <div className='movieList_component'>
-      <MovieCard posterUrl="" title="" description="" rating=""/>
-      <MovieCard posterUrl="" title="" description="" rating=""/>
-      <MovieCard posterUrl="" title="" description="" rating=""/>
-      <MovieCard posterUrl="" title="" description="" rating=""/>
+    <div className='movieList_component'>      
+      {
+        tabMovies.map((movie,key) => (
+          <MovieCard 
+            key={key}
+            posterUrl={movie.posterUrl}
+            title={movie.title}
+            description={movie.description}
+            rating={movie.rating}
+          />
+        ))
+      }
     </div>
   )
 }

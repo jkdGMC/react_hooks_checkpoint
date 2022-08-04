@@ -1,3 +1,7 @@
+h1{
+  color: red;
+}
+
 .App {
   display: flex;
   justify-content: center;
@@ -5,27 +9,13 @@
   flex-direction: column;
 }
 
-.title_movieList{
-  color: red;
-}
-
 .movies{
-  width: 50%;
-  border: 1px solid white;
+  width: 70%;
   border-radius: 3px;
 } 
 
-.btns{
-  margin-top: 70px;
-}
-
-.btns .btn{
-  cursor: pointer;
-  width: 150px;
-  height: 50px;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  background-color: red;
-  margin-right: 30px;
+.add_filter_container{
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
 }

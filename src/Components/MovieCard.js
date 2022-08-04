@@ -1,15 +1,14 @@
 import React from 'react'
 import './MovieCard.css'
 
-export default function MovieCard(props) {
-  
+export default function MovieCard({posterUrl,title,description,rating}) {
+
   return (
     <div className='movieCard_component'>
-      <img src={props.posterUrl} alt="imgPoster" />
-      <div className='title_movie'>{props.title}</div>
-      <div className='description_movie'><p>{props.description}</p></div>
-      <div className='rating_movie'>{props.rating}</div>
-      <div className="btn-more"><button>Voir plus</button></div>
+      <img src={posterUrl} alt="imgPoster" width='200' height='250' />
+      <div className='title_movie'><h5>{title}</h5></div>
+      <div className='description_movie'><p>{description}</p></div>
+      <div className='rating_movie'>Rating : {rating}</div>
     </div>
   )
 }

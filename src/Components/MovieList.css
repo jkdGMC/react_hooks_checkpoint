@@ -1,4 +1,5 @@
 .movieList_component{
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }

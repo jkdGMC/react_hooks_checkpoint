@@ -4,7 +4,6 @@ import MovieList from './Components/MovieList';
 import Filter from "./Components/Filter";
 import { useState, useEffect } from 'react';
 
-
 function App() {
   let movies = [
     {
@@ -30,27 +29,20 @@ function App() {
     posterUrl : '',
     title : '',
     description : '',
-    rating : null
+    rating : 0
   }
- 
-
 
   const [tabMovies, setMovies] = useState(movies)
   const [newMovie, setNewMovie] = useState(movie)
 
   const addMovie = (e) =>{
     e.preventDefault()
-    const movieToPush = tabMovies
-    movieToPush.push(newMovie)
-     setMovies(movieToPush)
-     console.log(tabMovies)
+    tabMovies.push(newMovie)
+    setMovies(tabMovies)
+    setNewMovie(movie)
+    console.log(tabMovies);
   }
-  
-  useEffect(() => {
-    console.log(tabMovies)
-  },[tabMovies])
 
-  
   return (
     <div className="App">
       <div className='title_movieList'>
@@ -65,7 +57,7 @@ function App() {
           <Form 
             newMovie={newMovie}
             setNewMovie={setNewMovie}
-          onSubmit = {(e) => addMovie(e)}
+            onSubmit = {(e) => addMovie(e)}
           />
         </div>
         <div className="filter">

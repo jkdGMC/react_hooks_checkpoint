@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import useForceUpdate from 'use-force-update'
 import MovieCard from './MovieCard'
 import './MovieList.css'
 

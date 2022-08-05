@@ -1,11 +1,14 @@
 .movieCard_component{
   width: 200px;
   height: auto;
-  /* margin-bottom: 30px; */
   font-size: 30px;
   border-radius: 3px;
 }
 
 .description_movie p{
   font-size: 15px;
+}
+
+.display-delay{
+  transition: 1s;
 }

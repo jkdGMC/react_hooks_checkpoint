@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import MovieCard from './MovieCard'
 import './MovieList.css'
 
 
-export default function MovieList({tabMovies}) {
+export default function MovieList({tabMovies,navigate}) {
 
   return (
     <div className='movieList_component'>      
@@ -15,6 +15,8 @@ export default function MovieList({tabMovies}) {
             title={movie.title}
             description={movie.description}
             rating={movie.rating}
+            trailerLink={movie.trailerLink}
+            navigate={navigate}
           />
         ))
       }

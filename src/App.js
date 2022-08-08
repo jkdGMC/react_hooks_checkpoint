@@ -2,9 +2,9 @@ import './App.css';
 import Form from './Components/Form';
 import MovieList from './Components/MovieList';
 import Filter from "./Components/Filter";
-import { useState, useEffect } from 'react';
-import { Navigate, Routes, Route } from 'react-router-dom';
 import Trailer from './Components/Trailer';
+import { useState } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 function App() {
 
@@ -38,7 +38,8 @@ function App() {
     posterUrl : '',
     title : '',
     description : '',
-    rating : 0
+    rating : 0,
+    trailerLink : ''
   }
 
   let selectValue = '';
@@ -46,18 +47,13 @@ function App() {
   const [tabMovies, setMovies] = useState(movies)
   const [newMovie, setNewMovie] = useState(movie)
   const [choice, setChoice] = useState(selectValue)
-
-  console.log(typeof choice)
+  const navigate = useNavigate()
 
   const addMovie = (e) =>{
     e.preventDefault()
     tabMovies.push(newMovie)
     setMovies(tabMovies)
     setNewMovie(movie)
-  }
-
-  const linkToTrailer = () => {
-    <Navigate to='/trailer' />
   }
 
   const sortMovies = (e) => {
@@ -89,7 +85,10 @@ function App() {
         <h1>Liste des films</h1>
       </div>  
       <div className='movies'>
-        <MovieList tabMovies = {tabMovies} /> 
+        <MovieList
+          tabMovies = {tabMovies}
+          navigate={navigate}
+        /> 
       </div>
       <div className="add_filter_container">
         <div className="form">
@@ -107,12 +106,12 @@ function App() {
             setChoice={setChoice}
           />
         </div>
+        
+        <Routes>
+          <Route path='/*' element={<App />}></Route>
+          <Route path='/trailer' element={<Trailer />}></Route>
+        </Routes>
       </div>
-
-      <Routes>
-        <Route path="/" element={<App />}></Route>  
-        <Route path="/trailer" element={<Trailer />}></Route>
-      </Routes>
     </div>
   );
 }

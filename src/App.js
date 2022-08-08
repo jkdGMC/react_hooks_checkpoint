@@ -3,6 +3,8 @@ import Form from './Components/Form';
 import MovieList from './Components/MovieList';
 import Filter from "./Components/Filter";
 import { useState, useEffect } from 'react';
+import { Navigate, Routes, Route } from 'react-router-dom';
+import Trailer from './Components/Trailer';
 
 function App() {
 
@@ -11,19 +13,24 @@ function App() {
       posterUrl : '/breakingBad.jpg',
       title : 'Breaking Bad',
       description : 'Un professeur de chimie de lycée chez qui on a diagnostiqué un cancer du poumon inopérable se tourne vers la fabrication et la vente de méthamphétamine pour assurer l\'avenir de sa famille.',
-      rating : 9.5
+      rating : 9.5,
+      trailerLink: ''
     },
     {
       posterUrl : '/see.jpg',
       title : 'See',
       description : 'Dans un futur lointain, alors que la race humaine a perdu le sens de la vue, la société a dû trouver d\'autres façons d\'intéragir, de chasser, de construire et tout simplement de survivre. Cet équilibre est bousculé le jour où des jumeaux naissent avec la capacité de voir. Baba Voss, le patriarche, doit alors protéger son clan contre une reine puissante qui veut les détruire, persuadée qu\'il s\'agit de sorcellerie.',
-      rating : 10
+      rating : 10,
+      trailerLink: ''
+
     },
     {
       posterUrl : '/alteredCarbon.jpg',
       title : 'Altered Carbon',
       description : 'Muni d\'un nouveau corps, Takeshi Kovacs revient sur Harlan pour une mission, mais la planète est à feu et à sang, et son grand amour perdu erre dans l\'ombre.',
-      rating : 6.5
+      rating : 6.5,
+      trailerLink: ''
+
     }
   ]
 
@@ -47,6 +54,10 @@ function App() {
     tabMovies.push(newMovie)
     setMovies(tabMovies)
     setNewMovie(movie)
+  }
+
+  const linkToTrailer = () => {
+    <Navigate to='/trailer' />
   }
 
   const sortMovies = (e) => {
@@ -97,6 +108,11 @@ function App() {
           />
         </div>
       </div>
+
+      <Routes>
+        <Route path="/" element={<App />}></Route>  
+        <Route path="/trailer" element={<Trailer />}></Route>
+      </Routes>
     </div>
   );
 }

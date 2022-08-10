@@ -1,10 +1,8 @@
 import './App.css';
-import Form from './Components/Form';
-import MovieList from './Components/MovieList';
-import Filter from "./Components/Filter";
-import Trailer from './Components/Trailer';
 import { useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, Route, Routes } from 'react-router-dom';
+import Trailer from './Components/Trailer';
+import Home from './Components/Home';
 
 function App() {
 
@@ -14,14 +12,14 @@ function App() {
       title : 'Breaking Bad',
       description : 'Un professeur de chimie de lycée chez qui on a diagnostiqué un cancer du poumon inopérable se tourne vers la fabrication et la vente de méthamphétamine pour assurer l\'avenir de sa famille.',
       rating : 9.5,
-      trailerLink: ''
+      trailerLink: 'https://www.youtube.com/embed/HhesaQXLuRY'
     },
     {
       posterUrl : '/see.jpg',
       title : 'See',
       description : 'Dans un futur lointain, alors que la race humaine a perdu le sens de la vue, la société a dû trouver d\'autres façons d\'intéragir, de chasser, de construire et tout simplement de survivre. Cet équilibre est bousculé le jour où des jumeaux naissent avec la capacité de voir. Baba Voss, le patriarche, doit alors protéger son clan contre une reine puissante qui veut les détruire, persuadée qu\'il s\'agit de sorcellerie.',
       rating : 10,
-      trailerLink: ''
+      trailerLink: 'https://www.youtube.com/embed/7Rg0y7NT1gU'
 
     },
     {
@@ -29,8 +27,7 @@ function App() {
       title : 'Altered Carbon',
       description : 'Muni d\'un nouveau corps, Takeshi Kovacs revient sur Harlan pour une mission, mais la planète est à feu et à sang, et son grand amour perdu erre dans l\'ombre.',
       rating : 6.5,
-      trailerLink: ''
-
+      trailerLink: 'https://www.youtube.com/embed/R_hzj4vlpX4'
     }
   ]
 
@@ -47,7 +44,6 @@ function App() {
   const [tabMovies, setMovies] = useState(movies)
   const [newMovie, setNewMovie] = useState(movie)
   const [choice, setChoice] = useState(selectValue)
-  const navigate = useNavigate()
 
   const addMovie = (e) =>{
     e.preventDefault()
@@ -78,42 +74,28 @@ function App() {
       setChoice(selectValue)
     }
   }
+
+  const location = useLocation()
   
-  return (
-    <div className="App">
-      <div className='title_movieList'>
-        <h1>Liste des films</h1>
-      </div>  
-      <div className='movies'>
-        <MovieList
-          tabMovies = {tabMovies}
-          navigate={navigate}
-        /> 
-      </div>
-      <div className="add_filter_container">
-        <div className="form">
-          <h1>Add a new movie</h1>
-          <Form 
-            newMovie={newMovie}
-            setNewMovie={setNewMovie}
-            onSubmit = {(e) => addMovie(e)}
-          />
-        </div>
-        <div className="filter">
-          <h1>Filter movies</h1>
-          <Filter 
-            sortMovies={(e) => sortMovies(e)}
-            setChoice={setChoice}
-          />
-        </div>
-        
+    if (location.pathname.includes('trailer'))  
+      return (
+        <>
+        <Outlet />
         <Routes>
-          <Route path='/*' element={<App />}></Route>
-          <Route path='/trailer' element={<Trailer />}></Route>
+          <Route path='/trailer' element={<Trailer tabMovies={tabMovies}/>} >
+            <Route path=':title' element={<Trailer tabMovies={tabMovies}/>} />
+          </Route>
         </Routes>
-      </div>
-    </div>
-  );
+        </>
+        ) 
+      return(
+        <>
+        <Outlet/>
+        <Routes>
+          <Route path='/' element={<Home tabMovies={tabMovies} newMovie={newMovie} setNewMovie={setNewMovie} addMovie={addMovie} sortMovies={sortMovies} setChoice={setChoice} />} />
+        </Routes>
+        </>  
+    )
 }
 
 export default App;

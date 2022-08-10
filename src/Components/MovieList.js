@@ -3,7 +3,7 @@ import MovieCard from './MovieCard'
 import './MovieList.css'
 
 
-export default function MovieList({tabMovies,navigate}) {
+export default function MovieList({tabMovies}) {
 
   return (
     <div className='movieList_component'>      
@@ -16,7 +16,7 @@ export default function MovieList({tabMovies,navigate}) {
             description={movie.description}
             rating={movie.rating}
             trailerLink={movie.trailerLink}
-            navigate={navigate}
+            tabMovies={tabMovies}
           />
         ))
       }

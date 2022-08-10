@@ -1,18 +1,23 @@
 import React from 'react'
 import './Trailer.css'
+import { Link, useParams } from 'react-router-dom'
 
-export default function Trailer({trailerLink,title,description,navigate}) {
+export default function Trailer({tabMovies}) {
+  let trailerParams = useParams()
+
+  let clickedMovie = tabMovies.filter(movie => movie.title === trailerParams.title)
+  console.log(clickedMovie);
 
   return (
     <div className="trailer_container">
-      <div className='title_movie'>Trailer of {title}</div>
+      <div className='title_movie'><h1>Trailer of {clickedMovie[0].title}</h1></div>
       <div className="trailer_video">
-        <iframe width="853" height="480" src={trailerLink} title={title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="853" height="480" src={clickedMovie[0].trailerLink} title={clickedMovie[0].title} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
       </div>
       <div className="desc_container">
-        <h4>{description}</h4>
+        <p>{clickedMovie[0].description}</p>
       </div>
-      <buttton className='back-button' onClick={() =>navigate('/')}> Back to home</buttton>
+      <Link to="/"><button className='back-button'> Back to home</button></Link>
     </div>
   )
 }

@@ -77,7 +77,7 @@ function App() {
 
   const location = useLocation()
   
-    if (location.pathname.includes('trailer'))  
+    if (location.pathname.includes('trailer')){
       return (
         <>
         <Outlet />
@@ -87,7 +87,8 @@ function App() {
           </Route>
         </Routes>
         </>
-        ) 
+        )
+      }
       return(
         <>
         <Outlet/>

@@ -6,7 +6,6 @@ export default function Trailer({tabMovies}) {
   let trailerParams = useParams()
 
   let clickedMovie = tabMovies.filter(movie => movie.title === trailerParams.title)
-  console.log(clickedMovie);
 
   return (
     <div className="trailer_container">
